@@ -12,4 +12,4 @@
 	url = git://git.openembedded.org/openembedded-core
 [submodule "layers/meta-beagleplay"]
 	path = layers/meta-beagleplay
-	url = git@github.com:AlexLanzano/meta-beagleplay.git
+	url = git@github.com:spencerjcoward/meta-beagleplay.git
