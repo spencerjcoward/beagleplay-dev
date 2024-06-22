@@ -15,6 +15,17 @@ build:
 update-sdcard:
 	mkdir -p tmp-rootfs
 	sudo mount $(DEV)1 tmp-rootfs
+	sudo cp deploy-ti/images/beagleplay-dev/tiboot3.bin deploy-ti/images/beagleplay-dev/tispl.bin deploy-ti/images/beagleplay-dev/u-boot.img deploy-ti/images/beagleplay-dev/Image deploy-ti/images/beagleplay-dev/k3-am625-beagleplay.dtb tmp-rootfs
+	sync
+	sudo umount tmp-rootfs
+	rm -rf tmp-rootfs
+	sudo dd if=deploy-ti/images/beagleplay-dev/core-image-minimal-beagleplay-dev.rootfs.ext4 of=$(DEV)2 bs=1M
+	sync
+
+.PHONY: update-sdcard-rt
+update-sdcard:
+	mkdir -p tmp-rootfs
+	sudo mount $(DEV)1 tmp-rootfs
 	sudo cp deploy-ti/images/beagleplay-dev-rt/tiboot3.bin deploy-ti/images/beagleplay-dev-rt/tispl.bin deploy-ti/images/beagleplay-dev-rt/u-boot.img deploy-ti/images/beagleplay-dev-rt/Image deploy-ti/images/beagleplay-dev-rt/k3-am625-beagleplay.dtb tmp-rootfs
 	sync
 	sudo umount tmp-rootfs
@@ -23,6 +34,10 @@ update-sdcard:
 	sync
 
 .PHONY: copy-tftpboot
+copy-tftpboot:
+	sudo cp deploy-ti/images/beagleplay-dev/tiboot3.bin deploy-ti/images/beagleplay-dev/tispl.bin deploy-ti/images/beagleplay-dev/u-boot.img deploy-ti/images/beagleplay-dev/Image deploy-ti/images/beagleplay-dev/k3-am625-beagleplay.dtb /tftpboot
+
+.PHONY: copy-tftpboot-rt
 copy-tftpboot:
 	sudo cp deploy-ti/images/beagleplay-dev-rt/tiboot3.bin deploy-ti/images/beagleplay-dev-rt/tispl.bin deploy-ti/images/beagleplay-dev-rt/u-boot.img deploy-ti/images/beagleplay-dev-rt/Image deploy-ti/images/beagleplay-dev-rt/k3-am625-beagleplay.dtb /tftpboot
 
