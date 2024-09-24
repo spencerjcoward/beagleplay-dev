@@ -32,3 +32,8 @@ update-nfsroot:
 	-chmod a+w -R $(NFSROOT)
 	-chmod a+r -R $(NFSROOT)
 	-chmod a+X -R $(NFSROOT)
+
+.PHONY: devtool-u-boot-build
+devtool-u-boot-build:
+	. ./oe-init-build-env
+	devtool build-image core-image-minimal
